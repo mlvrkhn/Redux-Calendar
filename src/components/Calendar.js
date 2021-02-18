@@ -10,55 +10,23 @@ import CalendarForm from './CalendarForm';
 class Calendar extends React.Component {
     meetingsProvider = new MeetingsProvider();
 
-    loadMeetingsFromApi() {
-        fetch(this.apiUrl)
-            .then((resp) => {
-                if (resp.ok) {
-                    return resp.json();
-                }
-                throw new Error('Network error!');
-            })
-            .then((resp) => {
-                this.props.loadMeetings(resp);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    }
-
-    sendMeetingToApi = (meetingData) => {
-        fetch(this.apiUrl, {
-            method: 'POST',
-            body: JSON.stringify(meetingData),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then((resp) => {
-                if (resp.ok) {
-                    return resp.json();
-                }
-
-                throw new Error('Network error!');
-            })
-            .then((meetingData) => {
-                this.props.saveMeeting(meetingData);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+    saveMeeting = (meetingData) => {
+        this.meetingsProvider
+            .sendMeetingToApi()
+            .then((response) => this.props.saveMeeting(response));
     };
 
     componentDidMount() {
-        console.log(this.meetingsProvider);
-        // meetingsProvider.loadMeetingsFromApi();
+        this.meetingsProvider
+            .loadMeetingsFromApi()
+            .then((meetings) => this.props.loadMeetings(meetings));
     }
 
     render() {
         return (
             <section>
                 <CalendarList meetings={this.props.meetings} />
-                <CalendarForm saveMeeting={this.sendMeetingToApi} />
+                <CalendarForm saveMeeting={this.saveMeeting} />
             </section>
         );
     }
