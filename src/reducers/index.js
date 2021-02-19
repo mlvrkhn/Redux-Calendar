@@ -1,14 +1,5 @@
 const initialState = {
-    meetings: [
-        {
-            id: 1,
-            firstName: 'Jan',
-            lastName: 'Kowalski',
-            email: 'jan@kowalski.not',
-            date: '2022-01-01',
-            time: '10:00',
-        },
-    ],
+    meetings: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {

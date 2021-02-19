@@ -12,20 +12,21 @@ class Calendar extends React.Component {
 
     saveMeeting = (meetingData) => {
         this.meetingsProvider
-            .sendMeetingToApi()
-            .then((response) => this.props.saveMeeting(response));
+            .sendMeetingToApi(meetingData)
+            .then((response) => this.props.saveMeetingAction(response));
     };
 
     componentDidMount() {
         this.meetingsProvider
             .loadMeetingsFromApi()
-            .then((meetings) => this.props.loadMeetings(meetings));
+            .then((meetings) => this.props.loadMeetingsAction(meetings));
     }
 
     render() {
+        const { meetings } = this.props;
         return (
             <section>
-                <CalendarList meetings={this.props.meetings} />
+                <CalendarList meetings={meetings} />
                 <CalendarForm saveMeeting={this.saveMeeting} />
             </section>
         );
@@ -38,8 +39,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapActionToProps = {
-    loadMeetings: loadMeetingsAction,
-    saveMeeting: saveMeetingAction,
+    loadMeetingsAction,
+    saveMeetingAction,
 };
 
 export default connect(mapStateToProps, mapActionToProps)(Calendar);
