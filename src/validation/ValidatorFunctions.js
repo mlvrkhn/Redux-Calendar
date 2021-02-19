@@ -1,4 +1,8 @@
 class ValidatorFunctions {
+    isFirstNameCorrect = (firstName) => firstName.length > 0;
+
+    isLastNameCorrect = (lastName) => lastName.length > 0;
+
     isDateCorrect = (date) => {
         const pattern = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
         return pattern.test(date);
@@ -7,14 +11,6 @@ class ValidatorFunctions {
     isTimeCorrect = (time) => {
         const pattern = /^[0-9]{2}:[0-9]{2}$/;
         return pattern.test(time);
-    };
-
-    isFirstNameCorrect = (firstName) => {
-        return firstName.length > 0;
-    };
-
-    isLastNameCorrect = (lastName) => {
-        return lastName.length > 0;
     };
 
     isEmailCorrect = (email) => {
