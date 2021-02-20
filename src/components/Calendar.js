@@ -8,8 +8,6 @@ import CalendarList from './CalendarList';
 import CalendarForm from './CalendarForm';
 import GlobalStyle from './styled/Global';
 import StyledCalendar from './Calendar.styled';
-import StyledCalendarList from './CalendarList.styled';
-import StyledCalendarForm from './CalendarForm.styled';
 import { ThemeProvider } from 'styled-components';
 import theme from './styled/theme';
 
@@ -34,8 +32,8 @@ class Calendar extends React.Component {
             <ThemeProvider theme={theme}>
                 <GlobalStyle />
                 <StyledCalendar>
-                    <StyledCalendarList meetings={meetings} />
-                    <StyledCalendarForm saveMeeting={this.saveMeeting} />
+                    <CalendarForm saveMeeting={this.saveMeeting} />
+                    <CalendarList meetings={meetings} />
                 </StyledCalendar>
             </ThemeProvider>
         );

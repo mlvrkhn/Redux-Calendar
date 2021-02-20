@@ -6,8 +6,13 @@ const StyledCalendarForm = styled.form`
     border-radius: 32px;
     margin: 40px;
     border-radius: 20px;
-    background: #5e61b5;
+    background: ${({ theme }) => theme.background};
     box-shadow: ${({ theme }) => theme.boxShadow};
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 `;
 
 export default StyledCalendarForm;

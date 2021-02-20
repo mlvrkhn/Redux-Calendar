@@ -3,6 +3,7 @@ import validateForm from '../validation/Validator';
 import fields from '../formFields';
 
 import StyledCalendarForm from './CalendarForm.styled';
+import StyledInput from './Input.styled';
 
 const CalendarForm = (props) => {
     const initState = {
@@ -25,8 +26,6 @@ const CalendarForm = (props) => {
         if (errors.length === 0) {
             saveMeeting();
             clearFormFields();
-        } else {
-            console.log('there are errors');
         }
     };
 
@@ -65,8 +64,7 @@ const CalendarForm = (props) => {
             return (
                 <div key={name}>
                     <label>
-                        {field.label}:{' '}
-                        <input
+                        <StyledInput
                             name={name}
                             onChange={handleFieldChange}
                             value={state.time}
@@ -93,6 +91,7 @@ const CalendarForm = (props) => {
     return (
         <StyledCalendarForm action='' onSubmit={handleSubmit}>
             {/* <ul>{renderErrors()}</ul> */}
+            <h2>Add meeting</h2>
             {renderFormFields()}
             <div>
                 <input type='submit' value='zapisz' />

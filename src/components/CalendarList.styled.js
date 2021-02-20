@@ -4,8 +4,9 @@ const StyledCalendarList = styled.div`
     width: 300px;
     height: 450px;
     border-radius: 20px;
-    background: #5e61b5;
+    background: ${({ theme }) => theme.background};
     box-shadow: ${({ theme }) => theme.boxShadow};
+    padding: 50px;
 `;
 
 export default StyledCalendarList;
