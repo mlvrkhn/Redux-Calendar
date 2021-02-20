@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import validateForm from '../validation/Validator';
 import fields from '../formFields';
 
-class CalendarForm extends React.Component {
-    state = {
+import StyledCalendarForm from './CalendarForm.styled';
+
+const CalendarForm = (props) => {
+    const initState = {
         firstName: '',
         lastName: '',
         email: '',
@@ -12,51 +14,52 @@ class CalendarForm extends React.Component {
         errors: [],
     };
 
-    handleSubmit = (e) => {
+    const [state, setState] = useState(initState);
+
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-        const errors = validateForm(this.state);
-        this.setState({
-            errors,
-        });
+        const errors = validateForm(state);
+        setState({ ...state, errors });
 
         if (errors.length === 0) {
-            this.saveMeeting();
-            this.clearFormFields();
+            saveMeeting();
+            clearFormFields();
+        } else {
+            console.log('there are errors');
         }
     };
 
-    handleFieldChange = (e) => {
-        if (this.isFieldNameCorrect(e.target.name)) {
-            this.setState({
-                [e.target.name]: e.target.value,
-            });
+    const handleFieldChange = (e) => {
+        if (isFieldNameCorrect(e.target.name)) {
+            setState({ ...state, [e.target.name]: e.target.value });
         }
     };
 
-    saveMeeting() {
-        const { saveMeeting } = this.props;
+    const saveMeeting = () => {
+        const { saveMeeting } = props;
+        console.log('🚀 ~ saveMeeting ~ saveMeeting', saveMeeting);
 
         if (typeof saveMeeting === 'function') {
-            saveMeeting(this._getFieldsData());
+            saveMeeting(_getFieldsData());
         }
-    }
+    };
 
-    clearFormFields() {
-        const fieldsData = this._getFieldsData();
+    const clearFormFields = () => {
+        const fieldsData = _getFieldsData();
         for (const prop in fieldsData) {
             fieldsData[prop] = '';
         }
 
-        this.setState(fieldsData);
-    }
+        setState(fieldsData);
+    };
 
-    isFieldNameCorrect(name) {
-        const fieldsData = this._getFieldsData();
+    const isFieldNameCorrect = (name) => {
+        const fieldsData = _getFieldsData();
         return typeof fieldsData[name] !== 'undefined';
-    }
+    };
 
-    renderFormFields() {
+    const renderFormFields = () => {
         return fields.map((field) => {
             const { name, placeholder, label } = field;
             return (
@@ -65,41 +68,37 @@ class CalendarForm extends React.Component {
                         {field.label}:{' '}
                         <input
                             name={name}
-                            onChange={this.handleFieldChange}
-                            value={this.state.time}
+                            onChange={handleFieldChange}
+                            value={state.time}
                             placeholder={placeholder}
-                            value={this.state[name]}
+                            value={state[name]}
                         />
                     </label>
                 </div>
             );
         });
-    }
+    };
 
-    renderErrors() {
-        return this.state.errors.map((err, index) => (
-            <li key={index}>{err}</li>
-        ));
-    }
+    const renderErrors = () => {
+        return state.errors.map((err, index) => <li key={index}>{err}</li>);
+    };
 
-    _getFieldsData() {
-        const fieldsData = Object.assign({}, this.state);
+    const _getFieldsData = () => {
+        const fieldsData = Object.assign({}, state);
         delete fieldsData['errors'];
 
         return fieldsData;
-    }
+    };
 
-    render() {
-        return (
-            <form action='' onSubmit={this.handleSubmit}>
-                <ul>{this.renderErrors()}</ul>
-                {this.renderFormFields()}
-                <div>
-                    <input type='submit' value='zapisz' />
-                </div>
-            </form>
-        );
-    }
-}
+    return (
+        <StyledCalendarForm action='' onSubmit={handleSubmit}>
+            {/* <ul>{renderErrors()}</ul> */}
+            {renderFormFields()}
+            <div>
+                <input type='submit' value='zapisz' />
+            </div>
+        </StyledCalendarForm>
+    );
+};
 
 export default CalendarForm;

@@ -6,6 +6,12 @@ import MeetingsProvider from './../providers/MeetingsProvider';
 
 import CalendarList from './CalendarList';
 import CalendarForm from './CalendarForm';
+import GlobalStyle from './styled/Global';
+import StyledCalendar from './Calendar.styled';
+import StyledCalendarList from './CalendarList.styled';
+import StyledCalendarForm from './CalendarForm.styled';
+import { ThemeProvider } from 'styled-components';
+import theme from './styled/theme';
 
 class Calendar extends React.Component {
     meetingsProvider = new MeetingsProvider();
@@ -25,10 +31,13 @@ class Calendar extends React.Component {
     render() {
         const { meetings } = this.props;
         return (
-            <section>
-                <CalendarList meetings={meetings} />
-                <CalendarForm saveMeeting={this.saveMeeting} />
-            </section>
+            <ThemeProvider theme={theme}>
+                <GlobalStyle />
+                <StyledCalendar>
+                    <StyledCalendarList meetings={meetings} />
+                    <StyledCalendarForm saveMeeting={this.saveMeeting} />
+                </StyledCalendar>
+            </ThemeProvider>
         );
     }
 }
