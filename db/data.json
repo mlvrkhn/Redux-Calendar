@@ -1,36 +1,12 @@
 {
-  "meetings": [
-    {
-      "id": 1,
-      "firstName": "Jan",
-      "lastName": "Kowalski",
-      "email": "jan@kowalski.not",
-      "date": "2022-01-01",
-      "time": "10:00"
-    },
-    {
-      "id": 2,
-      "firstName": "Jan",
-      "lastName": "Kowalski",
-      "email": "jan@kowalski.not",
-      "date": "2022-01-01",
-      "time": "10:00"
-    },
-    {
-      "id": 3,
-      "firstName": "Jan",
-      "lastName": "Kowalski",
-      "email": "jan@kowalski.not",
-      "date": "2022-01-01",
-      "time": "10:00"
-    },
-    {
-      "firstName": "Martin",
-      "lastName": "Gawlyta",
-      "email": "martin.guide@gmail.com",
-      "date": "2022-03-16",
-      "time": "15:15",
-      "id": 4
-    }
-  ]
+    "meetings": [
+        {
+            "id": 1,
+            "firstName": "Jan",
+            "lastName": "Kowalski",
+            "email": "jan@kowalski.not",
+            "date": "2022-01-01",
+            "time": "10:00"
+        }
+    ]
 }
