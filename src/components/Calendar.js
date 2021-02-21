@@ -7,6 +7,7 @@ import {
     switchPage,
 } from '../actions/calendar';
 import MeetingsProvider from './../providers/MeetingsProvider';
+import { Transition } from 'react-transition-group';
 
 import CalendarList from './CalendarList';
 import CalendarForm from './CalendarForm';
@@ -46,6 +47,7 @@ class Calendar extends React.Component {
         );
     }
 }
+
 const mapStateToProps = (state) => {
     return {
         meetings: state.meetings,
