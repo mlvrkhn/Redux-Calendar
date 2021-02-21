@@ -26,7 +26,8 @@ class Calendar extends React.Component {
     };
 
     deleteMeeting = (meetingData) => {
-        this.meetingsProvider.deleteMeeting(meetingData).then((resp) => {
+        console.log('🚀 ~ deleteMeeting ~ meetingData', meetingData);
+        this.meetingsProvider.deleteMeetingInApi(meetingData).then((resp) => {
             console.log(resp);
         });
     };
@@ -47,7 +48,10 @@ class Calendar extends React.Component {
                     {flip === false ? (
                         <CalendarForm saveMeeting={this.saveMeeting} />
                     ) : (
-                        <CalendarList meetings={meetings} />
+                        <CalendarList
+                            meetings={meetings}
+                            deleteMeeting={this.deleteMeeting}
+                        />
                     )}
                 </StyledCalendar>
             </ThemeProvider>

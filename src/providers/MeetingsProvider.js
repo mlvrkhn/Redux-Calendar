@@ -15,7 +15,8 @@ class MeetingsProvider {
     }
 
     deleteMeetingInApi = (meetingData) => {
-        return fetch(this.apiUrl, {
+        const url = this.apiUrl + '/' + meetingData.id;
+        return fetch(url, {
             method: 'DELETE',
             body: JSON.stringify(meetingData),
             headers: {
@@ -33,23 +34,22 @@ class MeetingsProvider {
             });
     };
     sendMeetingToApi = (meetingData) => {
-        console.log('🚀 ~ meetingData', meetingData);
-        // return fetch(this.apiUrl, {
-        //     method: 'POST',
-        //     body: JSON.stringify(meetingData),
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        // })
-        //     .then((resp) => {
-        //         if (resp.ok) {
-        //             return resp.json();
-        //         }
-        //         throw new Error('Network error!');
-        //     })
-        //     .catch((err) => {
-        //         console.log(err);
-        //     });
+        return fetch(this.apiUrl, {
+            method: 'POST',
+            body: JSON.stringify(meetingData),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((resp) => {
+                if (resp.ok) {
+                    return resp.json();
+                }
+                throw new Error('Network error!');
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 }
 

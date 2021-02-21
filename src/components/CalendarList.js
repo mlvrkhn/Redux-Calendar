@@ -12,12 +12,11 @@ import {
 } from '../components/styled/transition';
 import { v4 as uuid } from 'uuid';
 
-const CalendarList = (props) => {
+const CalendarList = ({ meetings, deleteMeeting }) => {
     const dispatch = useDispatch();
     const [entered, setEntered] = useState(true);
 
     const renderMeetingsItem = (itemData) => {
-        console.log('🚀 ~ renderMeetingsItem ~ itemData', itemData.id);
         return (
             <StyledMeetingList key={itemData.id}>
                 {itemData.date} {itemData.time} with{' '}
@@ -26,19 +25,20 @@ const CalendarList = (props) => {
                 </a>
                 <StyledDeleteButton
                     style={{ float: 'right' }}
-                    onClick={(e) =>
+                    onClick={(e) => {
                         dispatch({
                             type: 'DELETE_MEETING',
                             payload: itemData.id,
-                        })
-                    }
+                        });
+                        deleteMeeting(itemData);
+                    }}
                 ></StyledDeleteButton>
             </StyledMeetingList>
         );
     };
 
     const renderMeetingsList = () => {
-        return props.meetings.map((item) => renderMeetingsItem(item));
+        return meetings.map((item) => renderMeetingsItem(item));
     };
 
     return (
