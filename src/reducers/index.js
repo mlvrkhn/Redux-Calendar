@@ -1,6 +1,6 @@
 const initialState = {
     meetings: [],
-    flip: true,
+    flip: false,
 };
 
 const reducer = (state = initialState, { type, payload }) => {
