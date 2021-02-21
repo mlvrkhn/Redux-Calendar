@@ -16,12 +16,6 @@ import { ThemeProvider } from 'styled-components';
 import theme from './styled/theme';
 
 class Calendar extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         currentCard: 0,
-    //     };
-    // }
     meetingsProvider = new MeetingsProvider();
 
     saveMeeting = (meetingData) => {
@@ -42,13 +36,11 @@ class Calendar extends React.Component {
             <ThemeProvider theme={theme}>
                 <GlobalStyle />
                 <StyledCalendar>
-                    <CalendarForm saveMeeting={this.saveMeeting} />
-                    <CalendarList meetings={meetings} />
-                    {/* {this.state.currentCard === 0 ? (
+                    {this.props.flipped === false ? (
                         <CalendarForm saveMeeting={this.saveMeeting} />
                     ) : (
                         <CalendarList meetings={meetings} />
-                    )} */}
+                    )}
                 </StyledCalendar>
             </ThemeProvider>
         );
@@ -57,7 +49,7 @@ class Calendar extends React.Component {
 const mapStateToProps = (state) => {
     return {
         meetings: state.meetings,
-        currentCard: state.currentCard,
+        flipped: state.flipped,
     };
 };
 

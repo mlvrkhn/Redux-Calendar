@@ -94,9 +94,9 @@ const CalendarForm = (props) => {
 
     return (
         <StyledCalendarForm action='' onSubmit={handleSubmit}>
-            {/* <ul>{renderErrors()}</ul> */}
             <StyledHeader>Add meeting</StyledHeader>
             {renderFormFields()}
+            <ul>{renderErrors()}</ul>
             <div>
                 <StyledButton type='submit' value='zapisz'>
                     Save
@@ -106,9 +106,7 @@ const CalendarForm = (props) => {
                     onClick={() =>
                         dispatch({
                             type: 'SWITCH_CARD',
-                            payload: {
-                                currentCard: 1,
-                            },
+                            payload: true,
                         })
                     }
                     value='zapisz'

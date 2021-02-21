@@ -10,9 +10,3 @@ export const saveMeetingAction = (meeting) => {
         payload: { meeting },
     };
 };
-export const switchCard = () => {
-    return {
-        type: 'SWITCH_CARD',
-        payload: { currentCard: 1 },
-    };
-};
