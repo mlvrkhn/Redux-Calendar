@@ -1,7 +1,6 @@
 const initialState = {
     meetings: [],
-    flip: false,
-    inProp: true,
+    flip: true,
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -20,6 +19,13 @@ const reducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 meetings: [...state.meetings, payload.meeting],
+            };
+        case 'DELETE_MEETING':
+            return {
+                ...state,
+                meetings: state.meetings.filter(
+                    (meeting) => meeting.id !== payload
+                ),
             };
         default:
             return state;

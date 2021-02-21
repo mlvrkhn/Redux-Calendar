@@ -14,9 +14,9 @@ class MeetingsProvider {
             });
     }
 
-    sendMeetingToApi = (meetingData) => {
+    deleteMeetingInApi = (meetingData) => {
         return fetch(this.apiUrl, {
-            method: 'POST',
+            method: 'DELETE',
             body: JSON.stringify(meetingData),
             headers: {
                 'Content-Type': 'application/json',
@@ -31,6 +31,25 @@ class MeetingsProvider {
             .catch((err) => {
                 console.log(err);
             });
+    };
+    sendMeetingToApi = (meetingData) => {
+        console.log('🚀 ~ meetingData', meetingData);
+        // return fetch(this.apiUrl, {
+        //     method: 'POST',
+        //     body: JSON.stringify(meetingData),
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        // })
+        //     .then((resp) => {
+        //         if (resp.ok) {
+        //             return resp.json();
+        //         }
+        //         throw new Error('Network error!');
+        //     })
+        //     .catch((err) => {
+        //         console.log(err);
+        //     });
     };
 }
 

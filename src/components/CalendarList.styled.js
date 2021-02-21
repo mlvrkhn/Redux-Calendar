@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledCalendarList = styled.div`
+const StyledCalendarList = styled.ul`
     width: 300px;
     height: 450px;
     border-radius: 32px;

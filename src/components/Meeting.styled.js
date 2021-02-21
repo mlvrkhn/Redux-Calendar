@@ -7,8 +7,8 @@ const StyledMeetingList = styled.li`
     box-shadow: ${({ theme }) => theme.boxShadow};
     border-radius: 20px;
     width: 300px;
-    padding: 5px;
-    padding-left: 20px;
+    padding: 3px;
+    padding-left: 40px;
 `;
 
 export default StyledMeetingList;

@@ -25,6 +25,12 @@ class Calendar extends React.Component {
             .then((response) => this.props.saveMeetingAction(response));
     };
 
+    deleteMeeting = (meetingData) => {
+        this.meetingsProvider.deleteMeeting(meetingData).then((resp) => {
+            console.log(resp);
+        });
+    };
+
     componentDidMount() {
         this.meetingsProvider
             .loadMeetingsFromApi()
@@ -32,7 +38,7 @@ class Calendar extends React.Component {
     }
 
     render() {
-        const { meetings, flip, inProp } = this.props;
+        const { meetings, flip } = this.props;
 
         return (
             <ThemeProvider theme={theme}>
@@ -53,7 +59,6 @@ const mapStateToProps = (state) => {
     return {
         meetings: state.meetings,
         flip: state.flip,
-        inProp: state.inProp,
     };
 };
 
