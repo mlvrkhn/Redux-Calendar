@@ -1,7 +1,11 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { connect } from 'react-redux';
-import { loadMeetingsAction, saveMeetingAction } from '../actions/calendar';
+import {
+    loadMeetingsAction,
+    saveMeetingAction,
+    switchPage,
+} from '../actions/calendar';
 import MeetingsProvider from './../providers/MeetingsProvider';
 
 import CalendarList from './CalendarList';
@@ -12,6 +16,12 @@ import { ThemeProvider } from 'styled-components';
 import theme from './styled/theme';
 
 class Calendar extends React.Component {
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         currentCard: 0,
+    //     };
+    // }
     meetingsProvider = new MeetingsProvider();
 
     saveMeeting = (meetingData) => {
@@ -34,6 +44,11 @@ class Calendar extends React.Component {
                 <StyledCalendar>
                     <CalendarForm saveMeeting={this.saveMeeting} />
                     <CalendarList meetings={meetings} />
+                    {/* {this.state.currentCard === 0 ? (
+                        <CalendarForm saveMeeting={this.saveMeeting} />
+                    ) : (
+                        <CalendarList meetings={meetings} />
+                    )} */}
                 </StyledCalendar>
             </ThemeProvider>
         );
@@ -42,6 +57,7 @@ class Calendar extends React.Component {
 const mapStateToProps = (state) => {
     return {
         meetings: state.meetings,
+        currentCard: state.currentCard,
     };
 };
 

@@ -12,17 +12,17 @@ const fields = [
     {
         label: 'Date',
         name: 'date',
-        placeholder: 'YYYY-MM-DD',
+        placeholder: 'Date: YYYY-MM-DD',
     },
     {
         label: 'Time',
         name: 'time',
-        placeholder: 'HH:MM',
+        placeholder: 'Time: HH:MM',
     },
     {
         label: 'E-mail',
         name: 'email',
-        placeholder: 'email@address.ext',
+        placeholder: 'email@domain.com',
     },
 ];
 

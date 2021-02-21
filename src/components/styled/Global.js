@@ -6,11 +6,16 @@ import ResetStyle from './Reset';
 
 const GlobalStyle = createGlobalStyle`
     ${ResetStyle};
-    body {
+    * {
         font-family: Input Mono;
+    };
+    body {
         font-size: 12px;
         background-color: #337DEE;
         color: ${({ theme }) => theme.color.bright};
+    }
+    h2 {
+        font-size: ${({ theme }) => theme.fontSize.xlarge}
     }
 `;
 export default GlobalStyle;

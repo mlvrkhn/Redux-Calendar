@@ -1,9 +1,15 @@
 const initialState = {
     meetings: [],
+    currentCard: 0,
 };
 
 const reducer = (state = initialState, { type, payload }) => {
     switch (type) {
+        case 'SWITCH_CARD':
+            return {
+                ...state,
+                currentCard: 1,
+            };
         case 'LOAD_MEETINGS':
             return {
                 ...state,

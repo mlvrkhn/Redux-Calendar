@@ -8,7 +8,9 @@ const StyledInput = styled.input`
     font-size: ${({ theme }) => theme.fontSize.medium};
     background: ${({ theme }) => theme.color.background};
     border-bottom: 1px solid;
-    border-color: ${({ theme }) => theme.color.bright};
+    border-color: lightgray;
+    padding: 0.1rem 0.5rem;
+    margin: 5px 0;
     &::placeholder {
         color: ${({ theme }) => theme.color.bright};
     }

@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import validateForm from '../validation/Validator';
 import fields from '../formFields';
 
 import StyledCalendarForm from './CalendarForm.styled';
 import StyledInput from './Input.styled';
+import StyledButton from './Button.styled';
+import StyledHeader from './Header.styled';
+import StyledButtonGroup from './ButtonGroup.styled';
 
 const CalendarForm = (props) => {
     const initState = {
@@ -16,6 +20,7 @@ const CalendarForm = (props) => {
     };
 
     const [state, setState] = useState(initState);
+    const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -37,7 +42,6 @@ const CalendarForm = (props) => {
 
     const saveMeeting = () => {
         const { saveMeeting } = props;
-        console.log('🚀 ~ saveMeeting ~ saveMeeting', saveMeeting);
 
         if (typeof saveMeeting === 'function') {
             saveMeeting(_getFieldsData());
@@ -91,10 +95,26 @@ const CalendarForm = (props) => {
     return (
         <StyledCalendarForm action='' onSubmit={handleSubmit}>
             {/* <ul>{renderErrors()}</ul> */}
-            <h2>Add meeting</h2>
+            <StyledHeader>Add meeting</StyledHeader>
             {renderFormFields()}
             <div>
-                <input type='submit' value='zapisz' />
+                <StyledButton type='submit' value='zapisz'>
+                    Save
+                </StyledButton>
+                <StyledButton
+                    type='button'
+                    onClick={() =>
+                        dispatch({
+                            type: 'SWITCH_CARD',
+                            payload: {
+                                currentCard: 1,
+                            },
+                        })
+                    }
+                    value='zapisz'
+                >
+                    See meetings
+                </StyledButton>
             </div>
         </StyledCalendarForm>
     );
