@@ -96,18 +96,18 @@ const CalendarForm = (props) => {
     };
 
     const defaultStyle = {
-        transition: `transform 2000ms, opacity 2000ms ease`,
+        transition: `transform 1000ms, opacity 500ms ease`,
         opacity: 1,
     };
     const transitionStyles = {
-        entering: { transform: 'scale(2.0)', opacity: 1 },
+        entering: { transform: 'rotateY(180deg)', opacity: 0 },
         entered: { transform: 'scale(1.0)', opacity: 1 },
-        exiting: { opacity: 0 },
+        exiting: { transform: 'rotateY(180deg)', opacity: 1 },
         exited: { opacity: 0 },
     };
 
     return (
-        <Transition in={entered} timeout={600} appear>
+        <Transition in={entered} timeout={0} appear>
             {(state) => (
                 <StyledCalendarForm
                     action=''
@@ -117,7 +117,6 @@ const CalendarForm = (props) => {
                         ...transitionStyles[state],
                     }}
                 >
-                    <p>{state}</p>
                     <StyledHeader>Add meeting</StyledHeader>
                     {renderFormFields()}
                     <ul>{renderErrors()}</ul>
@@ -129,10 +128,10 @@ const CalendarForm = (props) => {
                             type='button'
                             onClick={() => {
                                 setEntered(!entered);
-                                // dispatch({
-                                //     type: 'SWITCH_CARD',
-                                //     payload: true,
-                                // });
+                                dispatch({
+                                    type: 'SWITCH_CARD',
+                                    payload: true,
+                                });
                             }}
                             value='zapisz'
                         >
