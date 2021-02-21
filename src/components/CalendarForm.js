@@ -89,12 +89,14 @@ const CalendarForm = (props) => {
     };
 
     const renderErrors = () => {
-        return state.errors.map((err, index) => <li key={index}>{err}</li>);
+        if (state.errors.length > 0) {
+            return state.errors.map((err, index) => <li key={index}>{err}</li>);
+        }
     };
 
     const _getFieldsData = () => {
         const fieldsData = Object.assign({}, state);
-        delete fieldsData['errors'];
+        fieldsData['errors'] = [];
 
         return fieldsData;
     };
