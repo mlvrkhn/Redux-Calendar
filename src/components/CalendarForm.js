@@ -9,6 +9,8 @@ import StyledButton from './Button.styled';
 import StyledHeader from './Header.styled';
 import StyledButtonGroup from './ButtonGroup.styled';
 
+import { Transition } from 'react-transition-group';
+
 const CalendarForm = (props) => {
     const initState = {
         firstName: '',
@@ -20,6 +22,7 @@ const CalendarForm = (props) => {
     };
 
     const [state, setState] = useState(initState);
+    const [entered, setEntered] = useState(true);
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
@@ -92,29 +95,53 @@ const CalendarForm = (props) => {
         return fieldsData;
     };
 
+    const defaultStyle = {
+        transition: `transform 2000ms, opacity 2000ms ease`,
+        opacity: 1,
+    };
+    const transitionStyles = {
+        entering: { transform: 'scale(2.0)', opacity: 1 },
+        entered: { transform: 'scale(1.0)', opacity: 1 },
+        exiting: { opacity: 0 },
+        exited: { opacity: 0 },
+    };
+
     return (
-        <StyledCalendarForm action='' onSubmit={handleSubmit}>
-            <StyledHeader>Add meeting</StyledHeader>
-            {renderFormFields()}
-            <ul>{renderErrors()}</ul>
-            <div>
-                <StyledButton type='submit' value='zapisz'>
-                    Save
-                </StyledButton>
-                <StyledButton
-                    type='button'
-                    onClick={() =>
-                        dispatch({
-                            type: 'SWITCH_CARD',
-                            payload: true,
-                        })
-                    }
-                    value='zapisz'
+        <Transition in={entered} timeout={600} appear>
+            {(state) => (
+                <StyledCalendarForm
+                    action=''
+                    onSubmit={handleSubmit}
+                    style={{
+                        ...defaultStyle,
+                        ...transitionStyles[state],
+                    }}
                 >
-                    See meetings
-                </StyledButton>
-            </div>
-        </StyledCalendarForm>
+                    <p>{state}</p>
+                    <StyledHeader>Add meeting</StyledHeader>
+                    {renderFormFields()}
+                    <ul>{renderErrors()}</ul>
+                    <div>
+                        <StyledButton type='submit' value='zapisz'>
+                            Save
+                        </StyledButton>
+                        <StyledButton
+                            type='button'
+                            onClick={() => {
+                                setEntered(!entered);
+                                // dispatch({
+                                //     type: 'SWITCH_CARD',
+                                //     payload: true,
+                                // });
+                            }}
+                            value='zapisz'
+                        >
+                            See meetings
+                        </StyledButton>
+                    </div>
+                </StyledCalendarForm>
+            )}
+        </Transition>
     );
 };
 

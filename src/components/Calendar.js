@@ -32,12 +32,13 @@ class Calendar extends React.Component {
     }
 
     render() {
-        const { meetings } = this.props;
+        const { meetings, flip, inProp } = this.props;
+
         return (
             <ThemeProvider theme={theme}>
                 <GlobalStyle />
                 <StyledCalendar>
-                    {this.props.flipped === false ? (
+                    {flip === false ? (
                         <CalendarForm saveMeeting={this.saveMeeting} />
                     ) : (
                         <CalendarList meetings={meetings} />
@@ -51,7 +52,8 @@ class Calendar extends React.Component {
 const mapStateToProps = (state) => {
     return {
         meetings: state.meetings,
-        flipped: state.flipped,
+        flip: state.flip,
+        inProp: state.inProp,
     };
 };
 

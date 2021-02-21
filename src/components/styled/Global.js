@@ -17,5 +17,13 @@ const GlobalStyle = createGlobalStyle`
     h2 {
         font-size: ${({ theme }) => theme.fontSize.xlarge}
     }
+    /* .fade-appear {
+        opacity: 0;
+        z-index: 1;
+    }
+    .fade-appear.fade-appear-active {
+        opacity: 1;
+        transition: opacity 1000ms linear;
+    } */
 `;
 export default GlobalStyle;

@@ -1,6 +1,7 @@
 const initialState = {
     meetings: [],
-    flipped: false,
+    flip: false,
+    inProp: true,
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -8,7 +9,7 @@ const reducer = (state = initialState, { type, payload }) => {
         case 'SWITCH_CARD':
             return {
                 ...state,
-                flipped: payload,
+                flip: payload,
             };
         case 'LOAD_MEETINGS':
             return {
