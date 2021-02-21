@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import validateForm from '../validation/Validator';
 import fields from '../formFields';
+import {
+    defaultStyle,
+    transitionStyles,
+} from '../components/styled/transition';
 
 import StyledCalendarForm from './CalendarForm.styled';
 import StyledInput from './Input.styled';
@@ -95,26 +99,15 @@ const CalendarForm = (props) => {
         return fieldsData;
     };
 
-    const defaultStyle = {
-        transition: `transform 1000ms, opacity 500ms ease`,
-        opacity: 1,
-    };
-    const transitionStyles = {
-        entering: { transform: 'rotateY(180deg)', opacity: 0 },
-        entered: { transform: 'scale(1.0)', opacity: 1 },
-        exiting: { transform: 'rotateY(180deg)', opacity: 1 },
-        exited: { opacity: 0 },
-    };
-
     return (
         <Transition in={entered} timeout={0} appear>
-            {(state) => (
+            {(currState) => (
                 <StyledCalendarForm
                     action=''
                     onSubmit={handleSubmit}
                     style={{
                         ...defaultStyle,
-                        ...transitionStyles[state],
+                        ...transitionStyles[currState],
                     }}
                 >
                     <StyledHeader>Add meeting</StyledHeader>

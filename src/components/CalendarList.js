@@ -5,6 +5,10 @@ import StyledMeetingList from './Meeting.styled';
 import StyledHeader from './Header.styled';
 import StyledButton from './Button.styled';
 import { Transition } from 'react-transition-group';
+import {
+    defaultStyle,
+    transitionStyles,
+} from '../components/styled/transition';
 
 const CalendarList = (props) => {
     const dispatch = useDispatch();
@@ -25,25 +29,13 @@ const CalendarList = (props) => {
         return props.meetings.map((item) => renderMeetingsItem(item));
     };
 
-    const defaultStyle = {
-        transition: `transform 1000ms, opacity 500ms ease`,
-        opacity: 1,
-    };
-
-    const transitionStyles = {
-        entering: { transform: 'rotateY(180deg)', opacity: 0 },
-        entered: { transform: 'scale(1.0)', opacity: 1 },
-        exiting: { transform: 'rotateY(180deg)', opacity: 0 },
-        exited: { opacity: 0 },
-    };
-
     return (
         <Transition in={entered} timeout={0} appear>
-            {(state) => (
+            {(currState) => (
                 <StyledCalendarList
                     style={{
                         ...defaultStyle,
-                        ...transitionStyles[state],
+                        ...transitionStyles[currState],
                     }}
                 >
                     <StyledHeader>Your meetings</StyledHeader>
