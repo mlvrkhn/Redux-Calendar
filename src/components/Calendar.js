@@ -26,7 +26,6 @@ class Calendar extends React.Component {
     };
 
     deleteMeeting = (meetingData) => {
-        console.log('🚀 ~ deleteMeeting ~ meetingData', meetingData);
         this.meetingsProvider.deleteMeetingInApi(meetingData).then((resp) => {
             console.log(resp);
         });

@@ -9,6 +9,7 @@ const DeleteButton = styled.button`
     border: none;
     outline: none;
     margin: 2px;
+    float: right;
     justify-content: center;
     align-items: center;
     &:active {

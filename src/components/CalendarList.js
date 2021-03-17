@@ -24,7 +24,6 @@ const CalendarList = ({ meetings, deleteMeeting }) => {
                     {itemData.firstName} {itemData.lastName}
                 </a>
                 <StyledDeleteButton
-                    style={{ float: 'right' }}
                     onClick={(e) => {
                         dispatch({
                             type: 'DELETE_MEETING',
